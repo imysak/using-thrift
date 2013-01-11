@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!-- Post-processors for all standard config annotations. -->
+    <context:annotation-config />
+    <context:component-scan base-package="com.imysak.thrift" />
+
+    <!-- Turn on @Autowired, @PostConstruct etc support -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+
+    <!--  Thrift Clients  -->
+    <bean id="iService" class="com.imysak.thrift.commons.ThriftBlockingClientBuilder">
+        <constructor-arg type="java.lang.Class" value="com.imysak.thrift.IService.Client"/>
+        <constructor-arg type="java.lang.String" value="127.0.0.1"/>
+        <constructor-arg type="int" value="13001"/>
+    </bean>
+    
+</beans>

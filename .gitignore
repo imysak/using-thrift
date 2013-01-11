@@ -1,6 +1,14 @@
-*.class
+.project
+.classpath
+.settings
+.DS_Store
+*.iml
+*.ipr
+*.iws
+bin
+build
+target
 
-# Package Files #
-*.jar
-*.war
-*.ear
+generated-sources
+node_modules
+

@@ -1,0 +1,27 @@
+{
+  "name": "using-thrift",
+  "version": "0.0.1",
+  "description": "using-thrift client",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec -t 20000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/airomo/service-appsociety.git"
+  },
+  "contributors": [
+    "Igor Skrynkovskyy <skrynkovskyy@gmail.com>",
+    "Ihor Mysak <ihor.mysak@gmail.com>"
+  ],
+  "author": "Ihor Mysak <ihor.mysak@gmail.com>",
+  "license": "BSD",
+  "dependencies": {
+    "thrift": "~0.7.0",
+    "helenus-thrift": "~0.7.3"
+  },
+  "devDependencies": {
+    "mocha": "~1.7.4",
+    "chai": "~1.4.2"
+  }
+}
