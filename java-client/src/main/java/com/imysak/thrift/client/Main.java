@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.imysak.thrift.IService;
+import org.apache.thrift.TException;
 
 
 /**
@@ -21,10 +22,12 @@ public final class Main {
      * @param args
      *            not used
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws TException{
         @SuppressWarnings("unused") final ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/context.xml");
 
         final IService.Iface iService = (IService.Iface) context.getBean("com.imysak.thrift.IService.Iface");
+        
+        System.out.println(iService.getUTF8Text());
     }
 
 }
