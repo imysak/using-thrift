@@ -114,7 +114,7 @@ public abstract class AbstractThriftClientBuilder<T> implements FactoryBean<T>, 
         // but it should work.
         final Class<?>[] interfaces = clientClass.getInterfaces();
         for (final Class<?> anInterface : interfaces) {
-            if (anInterface.getPackage().getName().startsWith("com.airupt")) {
+            // if (anInterface.getPackage().getName().startsWith("com.imysak")) {
                 serviceInterface = (Class<T>) anInterface;
                 // proxyHandler = new InvocationHandler() {
                 // @Override
@@ -130,7 +130,7 @@ public abstract class AbstractThriftClientBuilder<T> implements FactoryBean<T>, 
                         anInterface.getClassLoader(),
                         new Class[] { serviceInterface },
                         proxyHandler);
-            }
+            // }
         }
         throw new IllegalArgumentException("Could not find service interface, cannot continue");
     }

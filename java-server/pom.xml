@@ -47,6 +47,13 @@
     
         <dependency>
             <groupId>com.imysak.thrift</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    
+    
+        <dependency>
+            <groupId>com.imysak.thrift</groupId>
             <artifactId>thrift-client</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -94,6 +101,18 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
         
+        
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        
+        <!-- Tests. -->
         <!-- Jetty servlet for integration unit testing. -->
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -108,7 +127,7 @@
             <version>7.4.5.v20110725</version>
             <scope>test</scope>
         </dependency>
-        <!-- Tests. -->
+        
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
