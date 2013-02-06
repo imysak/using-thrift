@@ -3,23 +3,37 @@ var thrift = require('helenus-thrift')
   , ttypes = require('./generated-sources/entities_types.js');
 
 function Service (config) {
-  var options = {
+  this.options = {
     transport: thrift.transport.TBufferedTransport
   , protocol: thrift.protocol.TBinaryProtocol
   };
 
-  this.connection = thrift.createConnection(config.HOST, config.PORT, options);
-
-  this.connection.on('error', function(err) {
-    this.connection.end();
-    console.log(err);
-  });
-
-  this.connection.on('close', this.connect);
+  this.config = config;
 };
 
 Service.prototype.connect = function () {
+  var self = this;
+
+  // Make connect
+  this.connection = thrift.createConnection(this.config.HOST, this.config.PORT, this.options);
+
+  // Event for error
+  this.connection.on('error', function(err) {
+    console.log(err);
+    self.end();
+  });
+
+  // Event for close
+  this.connection.on('close', function() {
+    self.connect();
+  });
+
+  // Thrift client
   this.client = thrift.createClient(IService, this.connection);
+};
+
+Service.prototype.end = function() {
+  this.connection.end();
 };
 
 module.exports = Service;
