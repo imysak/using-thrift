@@ -36,4 +36,8 @@ service IService {
     */
     list<entities.IStat> getStats(),
 
+   /**
+    * get text
+    */
+    string getUTF8Text()
 }
