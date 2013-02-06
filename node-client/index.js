@@ -1,10 +1,22 @@
+var IService = require('using-thrift')
+  , ttypes = IService.ttypes;
+
+var options = {
+  HOST : "127.0.0.1"
+, PORT : 13001
+};
 
 // Thrift connect
-var iService = new IService({ HOST : "127.0.0.1", PORT : 13001});
+var iService = new IService(options);
 iService.connect();
 
-entity  = new ttypes.IRequest({myName : "robot", text : "I'm sexy and I know it!"});
- 
-iService.query(entity);
+var request = {
+  myName : "robot"
+, text : "I'm sexy and I know it!"
+};
 
-console.log("Complete!");
+entity  = new ttypes.IRequest(request);
+ 
+iService.client.query(entity, function() {
+  console.log("Complete!");
+});
