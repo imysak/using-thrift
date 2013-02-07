@@ -17,6 +17,15 @@ var request = {
 
 entity  = new ttypes.IRequest(request);
  
-iService.client.query(entity, function() {
-  console.log("Complete!");
+iService.client.query(entity, function(err, response) {
+  console.log("query - Complete!");
+  console.log("error: " + err);
+  console.log("response: " + response);
 });
+
+iService.client.getUTF8Text(function(err, response) {
+  console.log("getUTF8Text - Complete!");
+  console.log("error: " + err);
+  console.log("response: " + response);
+});
+          

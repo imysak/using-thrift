@@ -3,6 +3,19 @@ var thrift = require('helenus-thrift')
   , ttypes = require('./generated-sources/entities_types.js');
 
 function Service (config) {
+
+thrift.protocol.TBinaryProtocol.prototype.writeString = function(str) {
+  str = new Buffer(str).toString('binary')
+  this.writeI32(str.length);
+  this.trans.write(str);
+ }
+
+thrift.protocol.TBinaryProtocol.prototype.readString = function() {
+  var r = this.readBinary().toString('utf8');
+  return r;
+}
+          
+          
   this.options = {
     transport: thrift.transport.TBufferedTransport
   , protocol: thrift.protocol.TBinaryProtocol
