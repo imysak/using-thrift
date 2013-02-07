@@ -1,8 +1,6 @@
 package com.imysak.thrift.client;
 
 
-import java.nio.charset.Charset;
-
 import org.apache.thrift.TException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +29,8 @@ public final class Main {
         @SuppressWarnings("unused") final ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/context.xml");
         final Logger logger = LoggerFactory.getLogger(Main.class);
         final IService.Iface iService = (IService.Iface) context.getBean("iService");
-        Charset.defaultCharset().
-        System.out.println("кирилиця з буквами і Ї ґ");
-        System.out
-                .println("Μια λίστα με τους καλύτερους κιθαρίστες της ροκ με βάση τις προσωπικές μου μουσικές προτιμήσεις.Η εφαρμογή φτιάχτηκε για προσωπική διασκέδαση και για να δοκιμαστούν κάποιες τεχνολογίες (jQueryMobile, phoneGap).Αν κάποιος ακούει ροκ και θέλει, ας τη δει και ας σχολιάσει αν του άρεσε το user interface (και για το αν συμφωνεί με τη λίστα ή έχω ξεχάσει κάποιον).Σημείωση: Η εφαρμογή δεν περιέχει μουσικά κομμάτια, μόνο συνδέσμους σε βίντεο στο youtube.");
-        logger.info(iService.getUTF8Text());
+        final String utf8Sample = iService.getUTF8Text();
+        logger.info(utf8Sample);
     }
 
 }

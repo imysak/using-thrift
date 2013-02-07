@@ -12,7 +12,7 @@ iService.connect();
 
 var request = {
   myName : "robot"
-, text : "I'm sexy and I know it!"
+, text : "I'm sexy and I know it! some UTF8: привіт тримай строку: Μια λίστα με τους"
 };
 
 entity  = new ttypes.IRequest(request);
@@ -28,4 +28,6 @@ iService.client.getUTF8Text(function(err, response) {
   console.log("error: " + err);
   console.log("response: " + response);
 });
-          
+
+process.sleep(2000);
+process.exit(code=0);
