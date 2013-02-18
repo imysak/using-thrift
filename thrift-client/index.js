@@ -1,27 +1,26 @@
 var thrift = require('helenus-thrift')
-  , IService = require('./generated-sources/IService.js')
-  , ttypes = require('./generated-sources/entities_types.js');
+, IService = require('./generated-sources/IService.js')
+, ttypes = require('./generated-sources/entities_types.js');
 
 function Service (config) {
+  thrift.protocol.TBinaryProtocol.prototype.writeString = function(str) {
+    str = new Buffer(str).toString('binary')
+    this.writeI32(str.length);
+    this.trans.write(str);
+  }
 
-thrift.protocol.TBinaryProtocol.prototype.writeString = function(str) {
-  str = new Buffer(str).toString('binary')
-  this.writeI32(str.length);
-  this.trans.write(str);
- }
+  thrift.protocol.TBinaryProtocol.prototype.readString = function() {
+    var r = this.readBinary().toString('utf8');
+    return r;
+  }
 
-thrift.protocol.TBinaryProtocol.prototype.readString = function() {
-  var r = this.readBinary().toString('utf8');
-  return r;
-}
-          
-          
   this.options = {
     transport: thrift.transport.TBufferedTransport
-  , protocol: thrift.protocol.TBinaryProtocol
+    , protocol: thrift.protocol.TBinaryProtocol
   };
 
   this.config = config;
+  this.timeout = config.TIMEOUT || 3000;
 };
 
 Service.prototype.connect = function () {
@@ -38,7 +37,9 @@ Service.prototype.connect = function () {
 
   // Event for close
   this.connection.on('close', function() {
-    self.connect();
+    setTimeout(function() {
+      self.connect();
+    }, self.timeout);
   });
 
   // Thrift client

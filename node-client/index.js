@@ -29,5 +29,9 @@ iService.client.getUTF8Text(function(err, response) {
   console.log("response: " + response);
 });
 
-process.sleep(2000);
-process.exit(code=0);
+// Reconect
+setInterval(function() {
+  iService.client.query(entity, function(err, response) {
+    console.log("query - Complete!");
+  });
+}, 4000);
