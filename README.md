@@ -10,7 +10,7 @@ Java server can be launched from console or(and) under application continer(like
         $ cd thrift-client
         $ ./generateNodePackage.sh
         $ npm install
-        $ npm link
+        $ sudo npm link
 
 2. Start java server:
 
