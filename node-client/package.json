@@ -18,7 +18,9 @@
   "license": "BSD",
   "dependencies": {
     "thrift": "~0.7.0",
-    "helenus-thrift": "~0.7.3"
+    "helenus-thrift": "~0.7.3",
+    "async": "~0.2.7",
+    "underscore": "~1.4.4"
   },
   "devDependencies": {
     "mocha": "~1.7.4",
